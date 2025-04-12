@@ -7,7 +7,7 @@ const facilities = [
     ages: [18, 65],
     cases: ["Depression", "Anxiety", "Bipolar Disorder"],
     zip: "44114",
-    requirements: "COVID test required, UDS within 24 hours"
+    requirements: "Negative COVID test, UDS within 24 hours"
   },
   {
     name: "Tranquil Minds Center",
@@ -17,7 +17,7 @@ const facilities = [
     ages: [13, 80],
     cases: ["Schizophrenia", "Anxiety", "Substance Abuse"],
     zip: "44115",
-    requirements: "Negative flu and COVID swab"
+    requirements: "Flu vaccine, COVID test within 48 hours"
   },
   {
     name: "Healing Path Facility",
@@ -57,7 +57,7 @@ const facilities = [
     ages: [12, 60],
     cases: ["Bipolar Disorder", "Substance Abuse"],
     zip: "44118",
-    requirements: "UDS and CBC required"
+    requirements: "UDS, flu vaccine documentation"
   },
   {
     name: "Peace Valley Clinic",
@@ -67,7 +67,7 @@ const facilities = [
     ages: [25, 75],
     cases: ["Anxiety", "Depression", "Schizophrenia"],
     zip: "44120",
-    requirements: "Basic labs, negative COVID/flu"
+    requirements: "Basic labs, COVID/flu negative swabs"
   },
   {
     name: "Harbor Light Center",
@@ -87,7 +87,7 @@ const facilities = [
     ages: [16, 70],
     cases: ["Depression", "Anxiety"],
     zip: "44109",
-    requirements: "COVID-negative within 48 hours"
+    requirements: "COVID-negative within 48 hours, TB screen"
   },
   {
     name: "MindCare Cleveland",
@@ -97,7 +97,7 @@ const facilities = [
     ages: [18, 60],
     cases: ["Schizophrenia", "Depression", "Anxiety"],
     zip: "44113",
-    requirements: "Recent psych clearance, COVID test"
+    requirements: "Psych clearance, COVID test, UDS"
   },
   {
     name: "Gateway Behavioral Services",
@@ -107,7 +107,7 @@ const facilities = [
     ages: [20, 65],
     cases: ["Bipolar Disorder", "Anxiety"],
     zip: "44103",
-    requirements: "Negative infectious panel"
+    requirements: "Negative infectious panel, flu shot"
   },
   {
     name: "New Horizons Mental Health",
@@ -137,7 +137,7 @@ const facilities = [
     ages: [18, 65],
     cases: ["Depression", "Anxiety", "Bipolar Disorder"],
     zip: "44105",
-    requirements: "CBC, UDS, COVID"
+    requirements: "CBC, UDS, COVID test"
   },
   {
     name: "Renewal Psychiatric Services",
@@ -147,6 +147,6 @@ const facilities = [
     ages: [12, 55],
     cases: ["Substance Abuse", "Schizophrenia"],
     zip: "44107",
-    requirements: "Recent labs, negative COVID test"
+    requirements: "Recent labs, COVID-negative, flu vaccine"
   }
 ];
