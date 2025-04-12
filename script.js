@@ -41,9 +41,12 @@ form.addEventListener("submit", (e) => {
     const ageOk = !age || (age >= f.ages[0] && age <= f.ages[1]);
     const genderOk = !gender || (gender === "male" ? f.maleBeds > 0 : f.femaleBeds > 0);
     const insuranceOk = !insurance || f.insurances.some(i => i.toLowerCase().includes(insurance));
-    const caseOk = !selectedCaseTypes.length || selectedCaseTypes.some(selected =>
-      f.cases.some(c => c.toLowerCase() === selected)
+
+    // Require facility to match ALL selected case types
+    const caseOk = selectedCaseTypes.length === 0 || selectedCaseTypes.every(selected =>
+      f.cases.map(c => c.toLowerCase()).includes(selected)
     );
+
     return ageOk && genderOk && insuranceOk && caseOk;
   });
 
