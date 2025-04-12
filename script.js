@@ -2,7 +2,7 @@ const tableBody = document.querySelector("#facilityTable tbody");
 const form = document.getElementById("filterForm");
 
 function calculateFakeDistance(zip1, zip2) {
-  return Math.abs(parseInt(zip1) - parseInt(zip2)); // dummy placeholder
+  return Math.abs(parseInt(zip1) - parseInt(zip2)); // dummy distance
 }
 
 function renderFacilities(data, userZip = null) {
@@ -18,6 +18,7 @@ function renderFacilities(data, userZip = null) {
       <td>${f.cases.join(", ")}</td>
       <td>${f.zip}</td>
       <td>${userZip ? calculateFakeDistance(userZip, f.zip) + " miles" : "—"}</td>
+      <td>${f.requirements || "—"}</td>
     `;
     tableBody.appendChild(tr);
   });
