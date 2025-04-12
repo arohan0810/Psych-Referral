@@ -42,10 +42,11 @@ form.addEventListener("submit", (e) => {
     const genderOk = !gender || (gender === "male" ? f.maleBeds > 0 : f.femaleBeds > 0);
     const insuranceOk = !insurance || f.insurances.some(i => i.toLowerCase().includes(insurance));
 
-    // Require facility to match ALL selected case types
-    const caseOk = selectedCaseTypes.length === 0 || selectedCaseTypes.every(selected =>
-      f.cases.map(c => c.toLowerCase()).includes(selected)
-    );
+    // Convert all facility case types to lowercase for consistent comparison
+    const facilityCases = f.cases.map(c => c.toLowerCase());
+
+    // Make sure EVERY selected case is included in the facility's cases
+    const caseOk = selectedCaseTypes.every(selected => facilityCases.includes(selected));
 
     return ageOk && genderOk && insuranceOk && caseOk;
   });
