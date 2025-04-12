@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mental Health Facility Finder</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -28,12 +28,28 @@
 
       <label>
         Case Type:
-        <input type="text" id="caseType" placeholder="e.g., Substance Abuse" />
+        <select id="caseTypeDropdown">
+          <option value="">Any</option>
+          <option value="Depression">Depression</option>
+          <option value="Anxiety">Anxiety</option>
+          <option value="Bipolar Disorder">Bipolar Disorder</option>
+          <option value="Schizophrenia">Schizophrenia</option>
+          <option value="Substance Abuse">Substance Abuse</option>
+        </select>
+        <input type="text" id="caseType" placeholder="Or type case type..." />
       </label>
 
       <label>
         Insurance:
-        <input type="text" id="insurance" placeholder="e.g., Medicaid" />
+        <select id="insuranceDropdown">
+          <option value="">Any</option>
+          <option value="Medicaid">Medicaid</option>
+          <option value="Medicare">Medicare</option>
+          <option value="Aetna">Aetna</option>
+          <option value="Blue Cross">Blue Cross</option>
+          <option value="UnitedHealthcare">UnitedHealthcare</option>
+        </select>
+        <input type="text" id="insurance" placeholder="Or type insurance..." />
       </label>
 
       <label>
