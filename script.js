@@ -2,7 +2,11 @@ const tableBody = document.querySelector("#facilityTable tbody");
 const form = document.getElementById("filterForm");
 
 function calculateFakeDistance(zip1, zip2) {
-  return Math.abs(parseInt(zip1) - parseInt(zip2)); // dummy distance
+  return Math.abs(parseInt(zip1) - parseInt(zip2)); // dummy placeholder
+}
+
+function getSelectedOptions(select) {
+  return Array.from(select.selectedOptions).map(option => option.value.toLowerCase());
 }
 
 function renderFacilities(data, userZip = null) {
@@ -29,15 +33,17 @@ form.addEventListener("submit", (e) => {
 
   const gender = document.getElementById("gender").value;
   const age = parseInt(document.getElementById("age").value);
-  const caseType = document.getElementById("caseTypeDropdown").value || document.getElementById("caseType").value.toLowerCase();
-  const insurance = document.getElementById("insuranceDropdown").value || document.getElementById("insurance").value.toLowerCase();
+  const selectedCaseTypes = getSelectedOptions(document.getElementById("caseTypeDropdown"));
+  const insurance = document.getElementById("insuranceDropdown").value.toLowerCase();
   const zip = document.getElementById("zipCode").value;
 
   const filtered = facilities.filter(f => {
     const ageOk = !age || (age >= f.ages[0] && age <= f.ages[1]);
     const genderOk = !gender || (gender === "male" ? f.maleBeds > 0 : f.femaleBeds > 0);
     const insuranceOk = !insurance || f.insurances.some(i => i.toLowerCase().includes(insurance));
-    const caseOk = !caseType || f.cases.some(c => c.toLowerCase().includes(caseType));
+    const caseOk = !selectedCaseTypes.length || selectedCaseTypes.some(selected =>
+      f.cases.some(c => c.toLowerCase() === selected)
+    );
     return ageOk && genderOk && insuranceOk && caseOk;
   });
 
