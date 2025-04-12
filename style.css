@@ -50,3 +50,10 @@ th {
 tr:nth-child(even) {
   background-color: #f9f9f9;
 }
+
+td, th {
+  vertical-align: top;
+  word-wrap: break-word;
+  word-break: break-word;
+  max-width: 200px;
+}
