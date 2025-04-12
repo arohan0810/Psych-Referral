@@ -17,6 +17,12 @@ label {
 input, select {
   padding: 5px;
   margin-top: 5px;
+  max-width: 100%;
+}
+
+select[multiple] {
+  height: auto;
+  min-height: 100px;
 }
 
 button {
