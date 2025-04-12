@@ -14,7 +14,7 @@ function renderFacilities(data, userZip = null) {
       <td>${f.maleBeds}</td>
       <td>${f.femaleBeds}</td>
       <td>${f.insurances.join(", ")}</td>
-      <td>${f.ages[0]}-${f.ages[1]}</td>
+      <td>${f.ages[0]}–${f.ages[1]}</td>
       <td>${f.cases.join(", ")}</td>
       <td>${f.zip}</td>
       <td>${userZip ? calculateFakeDistance(userZip, f.zip) + " miles" : "—"}</td>
@@ -25,18 +25,19 @@ function renderFacilities(data, userZip = null) {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+
   const gender = document.getElementById("gender").value;
   const age = parseInt(document.getElementById("age").value);
-  const caseType = document.getElementById("caseType").value.toLowerCase();
-  const insurance = document.getElementById("insurance").value.toLowerCase();
+  const caseType = document.getElementById("caseTypeDropdown").value || document.getElementById("caseType").value.toLowerCase();
+  const insurance = document.getElementById("insuranceDropdown").value || document.getElementById("insurance").value.toLowerCase();
   const zip = document.getElementById("zipCode").value;
 
   const filtered = facilities.filter(f => {
     const ageOk = !age || (age >= f.ages[0] && age <= f.ages[1]);
-    const genderBedsOk = !gender || (gender === "male" ? f.maleBeds > 0 : f.femaleBeds > 0);
+    const genderOk = !gender || (gender === "male" ? f.maleBeds > 0 : f.femaleBeds > 0);
     const insuranceOk = !insurance || f.insurances.some(i => i.toLowerCase().includes(insurance));
     const caseOk = !caseType || f.cases.some(c => c.toLowerCase().includes(caseType));
-    return ageOk && genderBedsOk && insuranceOk && caseOk;
+    return ageOk && genderOk && insuranceOk && caseOk;
   });
 
   const sorted = zip
