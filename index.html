@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mental Health Facility Finder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Mental Health Facility Finder</h1>
+
+  <section class="filter-section">
+    <h2>Filter Facilities</h2>
+    <form id="filterForm">
+      <label>
+        Patient Gender:
+        <select id="gender">
+          <option value="">Any</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </label>
+
+      <label>
+        Patient Age:
+        <input type="number" id="age" placeholder="Enter age" />
+      </label>
+
+      <label>
+        Case Type:
+        <input type="text" id="caseType" placeholder="e.g., Substance Abuse" />
+      </label>
+
+      <label>
+        Insurance:
+        <input type="text" id="insurance" placeholder="e.g., Medicaid" />
+      </label>
+
+      <label>
+        Patient Zip Code:
+        <input type="text" id="zipCode" placeholder="e.g., 44114" />
+      </label>
+
+      <button type="submit">Filter</button>
+    </form>
+  </section>
+
+  <section class="results-section">
+    <h2>Facility List</h2>
+    <table id="facilityTable">
+      <thead>
+        <tr>
+          <th data-sort="name">Name</th>
+          <th data-sort="maleBeds">Male Beds</th>
+          <th data-sort="femaleBeds">Female Beds</th>
+          <th data-sort="insurances">Insurances</th>
+          <th data-sort="ages">Ages</th>
+          <th data-sort="cases">Case Types</th>
+          <th data-sort="zip">Zip</th>
+          <th data-sort="distance">Distance</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
