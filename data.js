@@ -6,7 +6,8 @@ const facilities = [
     insurances: ["Medicaid", "Aetna", "UnitedHealthcare"],
     ages: [18, 65],
     cases: ["Depression", "Anxiety", "Bipolar Disorder"],
-    zip: "44114"
+    zip: "44114",
+    requirements: "COVID test required, UDS within 24 hours"
   },
   {
     name: "Tranquil Minds Center",
@@ -15,7 +16,8 @@ const facilities = [
     insurances: ["Medicare", "Blue Cross", "Medicaid"],
     ages: [13, 80],
     cases: ["Schizophrenia", "Anxiety", "Substance Abuse"],
-    zip: "44115"
+    zip: "44115",
+    requirements: "Negative flu and COVID swab"
   },
   {
     name: "Healing Path Facility",
@@ -24,7 +26,8 @@ const facilities = [
     insurances: ["Aetna", "Blue Cross"],
     ages: [18, 75],
     cases: ["Depression", "Bipolar Disorder", "Substance Abuse"],
-    zip: "44110"
+    zip: "44110",
+    requirements: "No current infection, CBC and BMP panels"
   },
   {
     name: "WellSpring Recovery",
@@ -33,7 +36,8 @@ const facilities = [
     insurances: ["Medicare", "Medicaid"],
     ages: [21, 60],
     cases: ["Anxiety", "Substance Abuse"],
-    zip: "44116"
+    zip: "44116",
+    requirements: "UDS, negative pregnancy test if applicable"
   },
   {
     name: "SafeHaven Psychiatric",
@@ -42,7 +46,8 @@ const facilities = [
     insurances: ["UnitedHealthcare", "Aetna"],
     ages: [18, 70],
     cases: ["Schizophrenia", "Depression"],
-    zip: "44112"
+    zip: "44112",
+    requirements: "COVID-negative, recent psych eval"
   },
   {
     name: "North Shore Behavioral",
@@ -51,7 +56,8 @@ const facilities = [
     insurances: ["Blue Cross", "Medicaid", "UnitedHealthcare"],
     ages: [12, 60],
     cases: ["Bipolar Disorder", "Substance Abuse"],
-    zip: "44118"
+    zip: "44118",
+    requirements: "UDS and CBC required"
   },
   {
     name: "Peace Valley Clinic",
@@ -60,7 +66,8 @@ const facilities = [
     insurances: ["Medicare", "Aetna"],
     ages: [25, 75],
     cases: ["Anxiety", "Depression", "Schizophrenia"],
-    zip: "44120"
+    zip: "44120",
+    requirements: "Basic labs, negative COVID/flu"
   },
   {
     name: "Harbor Light Center",
@@ -69,7 +76,8 @@ const facilities = [
     insurances: ["Medicaid", "Aetna", "Blue Cross"],
     ages: [18, 80],
     cases: ["Substance Abuse", "Bipolar Disorder"],
-    zip: "44111"
+    zip: "44111",
+    requirements: "UDS, no active infection"
   },
   {
     name: "Serenity Mental Health",
@@ -78,7 +86,8 @@ const facilities = [
     insurances: ["Medicare", "UnitedHealthcare"],
     ages: [16, 70],
     cases: ["Depression", "Anxiety"],
-    zip: "44109"
+    zip: "44109",
+    requirements: "COVID-negative within 48 hours"
   },
   {
     name: "MindCare Cleveland",
@@ -87,7 +96,8 @@ const facilities = [
     insurances: ["Aetna", "Medicaid"],
     ages: [18, 60],
     cases: ["Schizophrenia", "Depression", "Anxiety"],
-    zip: "44113"
+    zip: "44113",
+    requirements: "Recent psych clearance, COVID test"
   },
   {
     name: "Gateway Behavioral Services",
@@ -96,7 +106,8 @@ const facilities = [
     insurances: ["Blue Cross", "UnitedHealthcare", "Aetna"],
     ages: [20, 65],
     cases: ["Bipolar Disorder", "Anxiety"],
-    zip: "44103"
+    zip: "44103",
+    requirements: "Negative infectious panel"
   },
   {
     name: "New Horizons Mental Health",
@@ -105,7 +116,8 @@ const facilities = [
     insurances: ["Medicaid", "Blue Cross"],
     ages: [14, 50],
     cases: ["Substance Abuse", "Depression"],
-    zip: "44106"
+    zip: "44106",
+    requirements: "UDS, TB test within last year"
   },
   {
     name: "Sunrise Wellness Center",
@@ -114,7 +126,8 @@ const facilities = [
     insurances: ["UnitedHealthcare", "Medicare"],
     ages: [30, 85],
     cases: ["Schizophrenia", "Bipolar Disorder"],
-    zip: "44102"
+    zip: "44102",
+    requirements: "COVID/flu screen, recent EKG"
   },
   {
     name: "Calm Waters Institute",
@@ -123,7 +136,8 @@ const facilities = [
     insurances: ["Aetna", "Blue Cross", "Medicare"],
     ages: [18, 65],
     cases: ["Depression", "Anxiety", "Bipolar Disorder"],
-    zip: "44105"
+    zip: "44105",
+    requirements: "CBC, UDS, COVID"
   },
   {
     name: "Renewal Psychiatric Services",
@@ -132,6 +146,7 @@ const facilities = [
     insurances: ["Medicaid", "UnitedHealthcare", "Aetna"],
     ages: [12, 55],
     cases: ["Substance Abuse", "Schizophrenia"],
-    zip: "44107"
+    zip: "44107",
+    requirements: "Recent labs, negative COVID test"
   }
 ];
