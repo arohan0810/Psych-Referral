@@ -1,5 +1,9 @@
 const tableBody = document.querySelector("#facilityTable tbody");
 const form = document.getElementById("filterForm");
+const resetBtn = document.getElementById("resetBtn");
+
+let filteredFacilities = []; // store filtered list
+let currentSort = { key: null, ascending: true };
 
 function calculateFakeDistance(zip1, zip2) {
   return Math.abs(parseInt(zip1) - parseInt(zip2)); // dummy placeholder
@@ -28,9 +32,7 @@ function renderFacilities(data, userZip = null) {
   });
 }
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-
+function applyFilters() {
   const gender = document.getElementById("gender").value;
   const age = parseInt(document.getElementById("age").value);
   const selectedCaseTypes = getSelectedOptions(document.getElementById("caseTypeDropdown"));
@@ -41,32 +43,45 @@ form.addEventListener("submit", (e) => {
     const ageOk = !age || (age >= f.ages[0] && age <= f.ages[1]);
     const genderOk = !gender || (gender === "male" ? f.maleBeds > 0 : f.femaleBeds > 0);
     const insuranceOk = !insurance || f.insurances.some(i => i.toLowerCase().includes(insurance));
-
-    // Convert all facility case types to lowercase for consistent comparison
     const facilityCases = f.cases.map(c => c.toLowerCase());
-
-    // Make sure EVERY selected case is included in the facility's cases
-    const caseOk = selectedCaseTypes.every(selected => facilityCases.includes(selected));
-
+    const caseOk = selectedCaseTypes.length === 0 || selectedCaseTypes.every(selected => facilityCases.includes(selected));
     return ageOk && genderOk && insuranceOk && caseOk;
   });
 
-  const sorted = zip
+  filteredFacilities = zip
     ? filtered.sort((a, b) => calculateFakeDistance(zip, a.zip) - calculateFakeDistance(zip, b.zip))
     : filtered;
 
-  renderFacilities(sorted, zip);
+  renderFacilities(filteredFacilities, zip);
+}
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  applyFilters();
+});
+
+resetBtn.addEventListener("click", () => {
+  form.reset();
+  filteredFacilities = [...facilities];
+  renderFacilities(filteredFacilities);
 });
 
 document.querySelectorAll("th[data-sort]").forEach(th => {
   th.addEventListener("click", () => {
     const key = th.dataset.sort;
-    facilities.sort((a, b) => {
-      if (key === "name" || key === "zip") return a[key].localeCompare(b[key]);
-      if (key === "distance") return 0;
-      return b[key] - a[key];
+    const ascending = currentSort.key === key ? !currentSort.ascending : true;
+    currentSort = { key, ascending };
+
+    const listToSort = filteredFacilities.length ? [...filteredFacilities] : [...facilities];
+
+    listToSort.sort((a, b) => {
+      let aVal = a[key];
+      let bVal = b[key];
+      if (typeof aVal === "string") return ascending ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+      return ascending ? aVal - bVal : bVal - aVal;
     });
-    renderFacilities(facilities);
+
+    renderFacilities(listToSort);
   });
 });
 
