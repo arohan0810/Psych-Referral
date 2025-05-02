@@ -2,8 +2,9 @@ const tableBody = document.querySelector("#facilityTable tbody");
 const form = document.getElementById("filterForm");
 const resetBtn = document.getElementById("resetBtn");
 
-let filteredFacilities = []; // store filtered list
+let filteredFacilities = [...facilities]; // start with all
 let currentSort = { key: null, ascending: true };
+let currentZip = null;
 
 function calculateFakeDistance(zip1, zip2) {
   return Math.abs(parseInt(zip1) - parseInt(zip2)); // dummy placeholder
@@ -13,7 +14,7 @@ function getSelectedOptions(select) {
   return Array.from(select.selectedOptions).map(option => option.value.toLowerCase());
 }
 
-function renderFacilities(data, userZip = null) {
+function renderFacilities(data, zip = null) {
   tableBody.innerHTML = "";
   data.forEach((f) => {
     const tr = document.createElement("tr");
@@ -25,7 +26,7 @@ function renderFacilities(data, userZip = null) {
       <td>${f.ages[0]}–${f.ages[1]}</td>
       <td>${f.cases.join(", ")}</td>
       <td>${f.zip}</td>
-      <td>${userZip ? calculateFakeDistance(userZip, f.zip) + " miles" : "—"}</td>
+      <td>${zip ? calculateFakeDistance(zip, f.zip) + " miles" : "—"}</td>
       <td>${f.requirements || "—"}</td>
     `;
     tableBody.appendChild(tr);
@@ -38,8 +39,9 @@ function applyFilters() {
   const selectedCaseTypes = getSelectedOptions(document.getElementById("caseTypeDropdown"));
   const insurance = document.getElementById("insuranceDropdown").value.toLowerCase();
   const zip = document.getElementById("zipCode").value;
+  currentZip = zip;
 
-  const filtered = facilities.filter(f => {
+  filteredFacilities = facilities.filter(f => {
     const ageOk = !age || (age >= f.ages[0] && age <= f.ages[1]);
     const genderOk = !gender || (gender === "male" ? f.maleBeds > 0 : f.femaleBeds > 0);
     const insuranceOk = !insurance || f.insurances.some(i => i.toLowerCase().includes(insurance));
@@ -48,9 +50,9 @@ function applyFilters() {
     return ageOk && genderOk && insuranceOk && caseOk;
   });
 
-  filteredFacilities = zip
-    ? filtered.sort((a, b) => calculateFakeDistance(zip, a.zip) - calculateFakeDistance(zip, b.zip))
-    : filtered;
+  if (zip) {
+    filteredFacilities.sort((a, b) => calculateFakeDistance(zip, a.zip) - calculateFakeDistance(zip, b.zip));
+  }
 
   renderFacilities(filteredFacilities, zip);
 }
@@ -62,7 +64,13 @@ form.addEventListener("submit", (e) => {
 
 resetBtn.addEventListener("click", () => {
   form.reset();
+
+  // Clear multi-select manually
+  const caseSelect = document.getElementById("caseTypeDropdown");
+  Array.from(caseSelect.options).forEach(option => option.selected = false);
+
   filteredFacilities = [...facilities];
+  currentZip = null;
   renderFacilities(filteredFacilities);
 });
 
@@ -72,17 +80,17 @@ document.querySelectorAll("th[data-sort]").forEach(th => {
     const ascending = currentSort.key === key ? !currentSort.ascending : true;
     currentSort = { key, ascending };
 
-    const listToSort = filteredFacilities.length ? [...filteredFacilities] : [...facilities];
-
+    const listToSort = [...filteredFacilities];
     listToSort.sort((a, b) => {
       let aVal = a[key];
       let bVal = b[key];
-      if (typeof aVal === "string") return ascending ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+      if (key === "name" || key === "zip") return ascending ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
       return ascending ? aVal - bVal : bVal - aVal;
     });
 
-    renderFacilities(listToSort);
+    renderFacilities(listToSort, currentZip);
   });
 });
 
-renderFacilities(facilities);
+// Initial render
+renderFacilities(filteredFacilities);
